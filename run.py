@@ -8,25 +8,50 @@ class Board:
     The size, the number of ships, their position, and the owner of the board will be defined here.
     The ship positions and the guesses will be stocked here too.
     """
-    def __init__ (self, size, user_name, owner_type):
+    def __init__ (self, size, num_ships, user_name, owner_type):
+        """ Setup of the board blueprint """
         self.size = size
-        self.board =[["."] for x in range () for y in range(size)] #Create a 2D board
+        self.board = [["."] * size for _ in range(size)] #Create a 2D board
         self.num_ships = num_ships
         self.user_name = user_name
         self.owner_type = owner_type
-        self.guesses = [] #List the guessed position of the ships
         self.ships_position = [] #List the effectiv position of the ship
+        self.guesses = [] #List the guessed position of the ships
 
-    def ships_position (self):
-        while len(self.ships_position) =< self.num_ships:
+    def ships_place (self):
+        """ Setup of the ships place """
+        while len(self.ships_position) < self.num_ships:
             row= randint(0, self.size - 1)
             col= randint(0, self.size - 1)
             if (row, col) not in self.ships_position: 
                 self.ships_position.append ((row, col))
+    
+    def readme (self):
+        return "\n".join([" ".join(row) for row in self.board])
 
 
+def main():
+    """
+    Launch the game and run all functions
+    """
+    print ("*" * 50, "\n")
+    print ( "Welcome to this great Battleship game !\n")
+    name = input ("What's your name ?\n")
+    print ("")
+    print (f"So {name}, let's see if you got what it takes to beat your computer !\n")
+    print ("*" * 50)
 
-user_board = 
+    user_board = Board(5,4,name,"user")
+    computer_board = Board(5,4,"BigBlue", "computer")
+
+    user_board.ships_place()
+    computer_board.ships_place()
+
+    print (user_board.readme)
+    print (computer_board.readme)
+
+main ()
+
 
 
 
