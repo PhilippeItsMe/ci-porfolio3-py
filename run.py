@@ -57,7 +57,7 @@ class Board:
 
     def hit_or_missed (self, row, col):
         """Check if the targeted position is a hit or a missed"""
-        if (col, row) in self.ships_position: 
+        if (row, col) in self.ships_position: 
             self.board[row][col] = "X"
             self.ships_position.remove (row, col)
             return "Hit"
@@ -74,12 +74,13 @@ def main():
     Launch the game and run all functions
     """
     # Welcome message
-    print ("*" * 50, "\n")
+    print ("\n")
+    print ("*" * 30, "\n")
     print ( "Welcome to my great Battleship game !\n")
     name = input ("What's your name ?\n")
     print ("")
     print (f"So {name}, let's see if you got what it takes to beat me !\n")
-    print ("*" * 50)
+    print ("*" * 30)
 
     # Initial boards
     user_board = Board(5,4,name,"user")
@@ -87,19 +88,18 @@ def main():
     user_board.ships_place()
     computer_board.ships_place()
 
-    print (f"\n{name}, this is your board :")
+    print (f"\n{name}, this is your board : ")
     print (user_board.readme())
-    print ("\n","*" * 30, "\n")
-    print ("And this is mine :")
+    print ("And this is mine : ")
     print (computer_board.readme())
     print ("*" * 30, "\n")
 
     #Game's on until all ships form one player are sunked
-    while user_board.game_not_over() or computer_board.game_not_over():
+    while user_board.game_not_over() and computer_board.game_not_over():
         
         #User playing
         row, col = user_board.user_guesses () #Take the result of the methode
-        result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
+        result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
         print (f"Your guess is row : {row} and col : {col}" )
         print (user_board.readme())
         print ("\n","*" * 30, "\n")
@@ -110,10 +110,10 @@ def main():
             break
 
         #Computer playing
-        row, col = user_board.computer_guesses_guesses () #Take the result of the methode
-        result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
+        row, col = user_board.computer_guesses () #Take the result of the methode
+        result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
         print (f"Me guess is row : {row} and col : {col}" )
-        print (user_board.readme())
+        print (computer_board.readme())
         print ("\n","*" * 30, "\n")
 
         #Check if the computer won
