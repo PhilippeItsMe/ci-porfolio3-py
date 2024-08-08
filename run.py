@@ -23,8 +23,10 @@ class Board:
         while len(self.ships_position) < self.num_ships:
             row= randint(0, self.size - 1)
             col= randint(0, self.size - 1)
-            if (row, col) not in self.ships_position: 
+            if (row, col) not in self.ships_position: #To avoid having twice the a ship at the same place
                 self.ships_position.append ((row, col))
+                self.board[row][col] = "S"
+
     
     def readme (self):
         return "\n".join([" ".join(row) for row in self.board])
@@ -47,8 +49,10 @@ def main():
     user_board.ships_place()
     computer_board.ships_place()
 
-    print (user_board.readme)
-    print (computer_board.readme)
+    print (f"{name} board")
+    print (user_board.readme())
+    print (f"Computer board")
+    print (computer_board.readme())
 
 main ()
 
