@@ -23,8 +23,8 @@ class Board:
             col= randint(0, self.size - 1)
             if (row, col) not in self.ships_position: #To avoid having twice the a ship at the same place
                 self.ships_position.append ((row, col))
-                if self.owner_type == "user":
-                    self.board[row][col] = "S"
+                #if self.owner_type == "user":
+                self.board[row][col] = "S"
 
     def readme (self):
         """ Make the board a string so it's printable """
@@ -40,7 +40,6 @@ class Board:
                 col = int(input ("Your col : "))
                 if 0 <= row < self.size and 0 <= col < self.size:
                     if (row, col) not in self.guesses:
-                        self.guesses.append((row, col))
                         return row, col
                     else:
                         print("\n")
@@ -61,7 +60,6 @@ class Board:
             row= randint(0, self.size - 1)
             col= randint(0, self.size - 1)
             if (row, col) not in self.guesses: #To avoid having twice the same comptuer guess
-                self.guesses.append ((row, col))
                 return row, col
 
     def hit_or_missed (self, row, col):
@@ -91,9 +89,9 @@ def main():
     print (f"So {name}, let's see if you got what it takes to beat me !\n")
     print ("*" * 30)
 
-    # Initial boards
-    user_board = Board(5,4,name,"user")
-    computer_board = Board(5,4,"BigBlue", "computer")
+    # Initiat the boards
+    user_board = Board(3,2,name,"user")
+    computer_board = Board(3,2,"BigBlue", "computer")
     user_board.ships_place()
     computer_board.ships_place()
 
@@ -110,6 +108,7 @@ def main():
         
         #User playing
         row, col = user_board.user_guesses () #Take the result of the methode
+        user_board.guesses.append ((row, col))
         result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
         print("\n")
         print ("My new board is :")
@@ -119,11 +118,13 @@ def main():
 
         #Check if the user won
         if not computer_board.game_not_over():
-            print ("Well done, you won !")
+            print ("Well done, you won ! The game is over.")
+            print("\n")
             break
 
         #Computer playing
         row, col = user_board.computer_guesses () #Take the result of the methode
+        computer_board.guesses.append ((row, col))
         print (f"My guess is row : {row} and col : {col}" )
         result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
         print("\n")
@@ -134,7 +135,8 @@ def main():
 
         #Check if the computer won
         if not user_board.game_not_over():
-            print ("Hey hey hey... I got you !")
+            print ("Hey hey hey... I got you ! I won. The game is over.")
+            print("\n")
             break
 
         #Check if the user still want to play
