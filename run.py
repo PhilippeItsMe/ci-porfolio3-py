@@ -34,36 +34,45 @@ class Board:
         """ Get the user guess and check his validity"""
         while True : 
             try : 
-                print ("What's your guess ?")
-                print (f"You need to enter a number between 0 and {self.size -1}.")
-                row = int(input ("Your row :"))
-                col = int(input ("Your col :"))
+                print ("What's your guess ?\n")
+                print (f"You need to enter a number between 0 and {self.size -1}.\n")
+                row = int(input ("Your row : "))
+                col = int(input ("Your col : "))
                 if 0 <= row < self.size and 0 <= col < self.size:
                     if (row, col) not in self.guesses:
                         self.guesses.append((row, col))
                         return row, col
                     else:
-                        print ("Oups, you already targeted this position.")
-                else : print (f"Please enter a number between 0 and {self.size -1}.")
+                        print("\n")
+                        print ("Oups, you already targeted this position. Try again.")
+                        print("\n")
+                else : 
+                    print("\n")
+                    print (f"You need to enter a number between 0 and {self.size -1}, try again.")
+                    print("\n")
             except ValueError:
+                print("\n")
                 print ("You input is invalid! Try again.")
+                print("\n")
 
     def computer_guesses (self):
         """ Make the computer guess"""
-        row= randint(0, self.size - 1)
-        col= randint(0, self.size - 1)
-        if (row, col) not in self.guesses: #To avoid having twice the same comptuer guess
-            return row, col
+        while True: 
+            row= randint(0, self.size - 1)
+            col= randint(0, self.size - 1)
+            if (row, col) not in self.guesses: #To avoid having twice the same comptuer guess
+                self.guesses.append ((row, col))
+                return row, col
 
     def hit_or_missed (self, row, col):
         """Check if the targeted position is a hit or a missed"""
         if (row, col) in self.ships_position: 
             self.board[row][col] = "X"
-            self.ships_position.remove (row, col)
-            return "Hit"
+            self.ships_position.remove ((row, col))
+            print ("That's a hit.")
         else:
             self.board[row][col] = "O"
-            return "Miss"
+            print ("That's a miss.")
 
     def game_not_over (self):
         """" To see if some ships are remaining """
@@ -90,8 +99,10 @@ def main():
 
     print (f"\n{name}, this is your board : ")
     print (user_board.readme())
-    print ("And this is mine : ")
+    print ("\n")
+    print ("And this is mine : (of course my ships are hidden)")
     print (computer_board.readme())
+    print ("\n")
     print ("*" * 30, "\n")
 
     #Game's on until all ships form one player are sunked
@@ -100,9 +111,11 @@ def main():
         #User playing
         row, col = user_board.user_guesses () #Take the result of the methode
         result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
-        print (f"Your guess is row : {row} and col : {col}" )
-        print (user_board.readme())
-        print ("\n","*" * 30, "\n")
+        print("\n")
+        print ("My new board is :")
+        print (computer_board.readme())
+        print("\n")
+        print ("*" * 30, "\n")
 
         #Check if the user won
         if not computer_board.game_not_over():
@@ -111,29 +124,25 @@ def main():
 
         #Computer playing
         row, col = user_board.computer_guesses () #Take the result of the methode
+        print (f"My guess is row : {row} and col : {col}" )
         result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
-        print (f"Me guess is row : {row} and col : {col}" )
-        print (computer_board.readme())
-        print ("\n","*" * 30, "\n")
+        print("\n")
+        print (f"{name}, your new board is :")
+        print (user_board.readme())
+        print("\n")
+        print ("*" * 30, "\n")
 
         #Check if the computer won
         if not user_board.game_not_over():
             print ("Hey hey hey... I got you !")
             break
 
+        #Check if the user still want to play
+        a = input ("Are you ready for the next round ? If yes, press 'y' : ")
+        print("\n")
+        if a == "y":
+            continue
+        else :
+            break
+
 main ()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
