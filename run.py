@@ -30,9 +30,30 @@ class Board:
 
     def readme (self):
         """ Make the board a string so it's printable """
-        return "\n".join([" ".join(row) for row in self.board])
+        return "\n".join([" ".join(row) for row in self.board]) #To put all the stings together
 
+    def user_guesses (self):
+        """ Get the user guess and check his validity"""
+        print ("What's your guess ?")
+        print (f"You need to enter a number between 0 and {self.size -1}.")
+        row = int(input ("Your row :"))
+        col = int(input ("Your col :"))
+        if 0 <= row < self.size and 0 <= row < self.size and (row, col) not in self.guesses:
+            return row, col
+        else:
+            print ("Please enter a row and col number between 0 and 4 that you didn't use before ! ")
+        
+    def guess_validity (self, row, col)
+        """ Check the user guess validity"""
 
+    def computer_guesses (self):
+        """ Make the computer guess """
+        row= randint(0, self.size - 1)
+        col= randint(0, self.size - 1)
+        if (row, col) not in self.ships_position: #To avoid having twice the same comptuer guess
+            return row col
+        else computer_guesses()
+    
 def main():
     """
     Launch the game and run all functions
