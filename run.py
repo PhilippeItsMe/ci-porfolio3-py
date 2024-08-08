@@ -15,7 +15,7 @@ class Board:
         self.num_ships = num_ships
         self.user_name = user_name
         self.owner_type = owner_type
-        self.ships_position = [] #List the effectiv position of the ship
+        self.ships_position = [] #List the effectiv position of the ship, position will be removed everytime a ship is hit
         self.guesses = [] #List the guessed position of the ships
 
     def ships_place (self):
@@ -34,49 +34,72 @@ class Board:
 
     def user_guesses (self):
         """ Get the user guess and check his validity"""
-        print ("What's your guess ?")
-        print (f"You need to enter a number between 0 and {self.size -1}.")
-        row = int(input ("Your row :"))
-        col = int(input ("Your col :"))
-        if 0 <= row < self.size and 0 <= row < self.size and (row, col) not in self.guesses:
-            return row, col
-        else:
-            print ("Please enter a row and col number between 0 and 4 that you didn't use before ! ")
-        
-    def guess_validity (self, row, col)
-        """ Check the user guess validity"""
+        while True : 
+            try : 
+                print ("What's your guess ?")
+                print (f"You need to enter a number between 0 and {self.size -1}.")
+                row = int(input ("Your row :"))
+                col = int(input ("Your col :"))
+                if 0 <= row < self.size and 0 <= col < self.size:
+                    if (row, col) not in self.guesses:
+                        self.guesses.append((row, col))
+                        return row, col
+                    else:
+                        print ("Oups, you already targeted this position.")
+                else : print (f"Please enter a number between 0 and {self.size -1}.")
+            except ValueError:
+                print ("You input is invalid! Try again.")
 
     def computer_guesses (self):
-        """ Make the computer guess """
+        """ Make the computer guess"""
         row= randint(0, self.size - 1)
         col= randint(0, self.size - 1)
-        if (row, col) not in self.ships_position: #To avoid having twice the same comptuer guess
-            return row col
-        else computer_guesses()
+        if (row, col) not in self.guesses: #To avoid having twice the same comptuer guess
+            return row, col
+
+    def hit_or_missed (self, row, col):
+        """Check if the targeted position is a hit or a missed"""
+        if (col, row) in self.ships_position: 
+            self.board[row][col] = "X"
+            self.ships_position.remove (row, col)
+            return "Hit"
+        else:
+            self.board[row][col] = "O"
+            return "Miss"
+
+    def game_not_over (self):
+        """" To see if some ships are remaining """
+        return len(self.ships_position) > 0
     
 def main():
     """
     Launch the game and run all functions
     """
+    # Welcome message
     print ("*" * 50, "\n")
-    print ( "Welcome to this great Battleship game !\n")
+    print ( "Welcome to my great Battleship game !\n")
     name = input ("What's your name ?\n")
     print ("")
-    print (f"So {name}, let's see if you got what it takes to beat your computer !\n")
+    print (f"So {name}, let's see if you got what it takes to beat me !\n")
     print ("*" * 50)
 
+    # Initial boards
     user_board = Board(5,4,name,"user")
     computer_board = Board(5,4,"BigBlue", "computer")
-
     user_board.ships_place()
     computer_board.ships_place()
 
-    print (f"{name} board")
+    print (f"{name}, this is your board :")
     print (user_board.readme())
     print ("*" * 30, "\n")
-    print ("Computer board")
+    print ("And this is mine :")
     print (computer_board.readme())
     print ("*" * 30, "\n")
+
+    #Game's on until all ships form one player are sunked
+    while user_board.game_not_over() or computer_board.game_not_over():
+        
+
 
 main ()
 
