@@ -23,8 +23,8 @@ class Board:
             col= randint(0, self.size - 1)
             if (row, col) not in self.ships_position: #To avoid having twice the a ship at the same place
                 self.ships_position.append ((row, col))
-                #if self.owner_type == "user":
-                self.board[row][col] = "S"
+                if self.owner_type == "user":
+                    self.board[row][col] = "S"
 
     def readme (self):
         """ Make the board a string so it's printable """
@@ -35,9 +35,9 @@ class Board:
         while True : 
             try : 
                 print ("What's your guess ?\n")
-                print (f"You need to enter a number between 0 and {self.size -1}.\n")
-                row = int(input ("Your row : "))
-                col = int(input ("Your col : "))
+                print (f"You need to enter a number between 0 and {self.size -1}.\n") 
+                row = int(input ("Your row : ")) 
+                col = int(input ("Your col : ")) 
                 if 0 <= row < self.size and 0 <= col < self.size:
                     if (row, col) not in self.guesses:
                         return row, col
@@ -47,7 +47,7 @@ class Board:
                         print("\n")
                 else : 
                     print("\n")
-                    print (f"You need to enter a number between 0 and {self.size -1}, try again.")
+                    print (f"You need to enter a number between 0 and {self.size -1}, try again.") 
                     print("\n")
             except ValueError:
                 print("\n")
@@ -123,9 +123,9 @@ def main():
             break
 
         #Computer playing
-        row, col = user_board.computer_guesses () #Take the result of the methode
+        row, col = user_board.computer_guesses () #Take the result of the method
         computer_board.guesses.append ((row, col))
-        print (f"My guess is row : {row} and col : {col}" )
+        print (f"My guess is row : {row} and col : {col}")
         result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
         print("\n")
         print (f"{name}, your new board is :")
