@@ -25,10 +25,11 @@ class Board:
             col= randint(0, self.size - 1)
             if (row, col) not in self.ships_position: #To avoid having twice the a ship at the same place
                 self.ships_position.append ((row, col))
-                self.board[row][col] = "S"
+                if self.owner_type == "user":
+                    self.board[row][col] = "S"
 
-    
     def readme (self):
+        """ Make the board a string so it's printable """
         return "\n".join([" ".join(row) for row in self.board])
 
 
@@ -51,8 +52,10 @@ def main():
 
     print (f"{name} board")
     print (user_board.readme())
-    print (f"Computer board")
+    print ("*" * 30, "\n")
+    print ("Computer board")
     print (computer_board.readme())
+    print ("*" * 30, "\n")
 
 main ()
 
