@@ -1,7 +1,5 @@
 from random import randint
 
-scores = {"user":0,"computer":0}
-
 class Board:
     """
     Creation of a standard board that will be used by the user and the computer. 
@@ -89,9 +87,9 @@ def main():
     user_board.ships_place()
     computer_board.ships_place()
 
-    print (f"{name}, this is your board :")
+    print (f"\n{name}, this is your board :")
     print (user_board.readme())
-    print ("*" * 30, "\n")
+    print ("\n","*" * 30, "\n")
     print ("And this is mine :")
     print (computer_board.readme())
     print ("*" * 30, "\n")
@@ -99,7 +97,29 @@ def main():
     #Game's on until all ships form one player are sunked
     while user_board.game_not_over() or computer_board.game_not_over():
         
+        #User playing
+        row, col = user_board.user_guesses () #Take the result of the methode
+        result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
+        print (f"Your guess is row : {row} and col : {col}" )
+        print (user_board.readme())
+        print ("\n","*" * 30, "\n")
 
+        #Check if the user won
+        if not computer_board.game_not_over():
+            print ("Well done, you won !")
+            break
+
+        #Computer playing
+        row, col = user_board.computer_guesses_guesses () #Take the result of the methode
+        result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
+        print (f"Me guess is row : {row} and col : {col}" )
+        print (user_board.readme())
+        print ("\n","*" * 30, "\n")
+
+        #Check if the computer won
+        if not user_board.game_not_over():
+            print ("Hey hey hey... I got you !")
+            break
 
 main ()
 
