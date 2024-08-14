@@ -1,5 +1,8 @@
 from random import randint
 
+user_score = 0
+computer_score = 0
+
 class Board:
     """
     Creation of a standard board that will be used by the user and the computer. 
@@ -68,6 +71,7 @@ class Board:
             self.board[row][col] = "X"
             self.ships_position.remove ((row, col))
             print ("That's a hit.")
+            return "hit"
         else:
             self.board[row][col] = "O"
             print ("That's a miss.")
@@ -133,6 +137,15 @@ def main():
         print("\n")
         print ("*" * 30, "\n")
 
+        #New score printing
+        if user_board.hit_or_missed() == "hit":
+            computer_score += 1
+        if computer_board.hit_or_missed() == "hit":
+            user_score += 1
+        print (f"{name}, your new score is {user_score} and mine is {computer_score}")
+        print("\n")
+        print ("*" * 30, "\n")
+        
         #Check if the computer won
         if not user_board.game_not_over():
             print ("Hey hey hey... I got you ! I won. The game is over.")
