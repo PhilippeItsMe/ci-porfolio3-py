@@ -1,32 +1,24 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome,
+<hr>
+<h1>CHALLENGE 3 | PYTHON : THE BATTELSHIP</h1>
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+<a style="text-decoration:underline;" target="_blank" href="https://code-insti-portfolio3-py-3d5d6c3645a4.herokuapp.com/">View the LIVE project here</a>
 
-## Reminders
+<img src="assets/images/mokeup.webp">
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+<h2>Background</h2>
+The battelship is a game build on python. 
+The goal of it is to hit all the computer ships before he hits your.
 
-## Creating the Heroku app
+<h2>How to play</h2>
+<ol>
+    <li>Enter your name</li>
+    <li>Let the software create two boards with ships on it</li>
+    <li>Guess where the computer ships are by entering a position : row and col.</li>
+    <li>Let the computer do the same for your ships</li>
+    <li>Let the software check if you and the computer hit or miss the ships</li>
+    <li>Let the software print you new boards and the new results with your scores</li>
+</ol>
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+For you information, the board are 3 on 3 with 2 ships to facilitate the testing of the game. The user ship position are marked with a S. Hits on the boards are notify by a X and miss by a O.
