@@ -76,7 +76,7 @@ Two board (instances) are build out of the board class to allow the game to happ
 
 <ul>
     <li>I tested the game (and the error scenarios) on VSC and Heroku, no problem found</li>
-    <li>I tested the game on PEP8, no problem found</li>
+    <li>I tested the game on PEP8, no critical problem found</li>
     <li>My 8 years of boy tested, his comment "Cool Dady"</li>
 </ul>
 
