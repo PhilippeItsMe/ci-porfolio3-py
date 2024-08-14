@@ -84,6 +84,8 @@ def main():
     """
     Launch the game and run all functions
     """
+    global user_score, computer_score
+
     # Welcome message
     print ("\n")
     print ("*" * 30, "\n")
@@ -159,5 +161,4 @@ def main():
             continue
         else :
             break
-
 main ()
