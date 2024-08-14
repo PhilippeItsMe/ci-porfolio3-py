@@ -92,9 +92,17 @@ Two board (instances) are build out of the board class to allow the game to happ
 
 <h2>Deployement</h2>
 
-Push the
-Fork or clone this repository
-Create a new Heroku app
-Set the buildbacks to Python and NodeJS in this order
-Link the Heroku app to the repository
-Deploy
+<ol>
+    <li>Fork or clone this repository</li>
+    <li>Create a new Heroku app</li>
+    <li>Set the buildbacks to Python and NodeJS in this order</li>
+    <li>Link the Heroku app to the repository</li>
+    <li>Deploy</li>
+</ol>
+
+<h2>Credits</h2>
+<ol>
+    <li>Thanks to Code Institute for the project idea and the coding direction presented</li>
+    <li>Thanks to Code Institute for the readme model</li>
+    <li>Thanks to Spence, my mentor, for his support.</li>
+</ol>
