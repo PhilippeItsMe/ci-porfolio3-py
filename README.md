@@ -15,11 +15,14 @@ The first one hitting all the ship of the other is the winner.
 <h2>How to play</h2>
 <ol>
     <li>Enter your name</li>
+    <img style="width:300px" src="assets/images/name.webp"><br>
     <li>Let the software create two boards with ships on it</li>
+    <img style="width:300px" src="assets/images/boards.webp"><br>
     <li>Guess where the computer ships are by entering a position : row and col.</li>
     <li>Let the computer do the same for your ships</li>
     <li>Let the software check if you and the computer hit or miss the enemy ships</li>
     <li>Let the software print you new boards and the new results with your scores</li>
+    <img style="width:300px" src="assets/images/scores.webp"><br>
     <li>Enter if you still want to continue the game</li>
     <li>Repeat the guessing step until the game is over</li>
 </ol>
