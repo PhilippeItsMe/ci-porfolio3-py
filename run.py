@@ -114,6 +114,8 @@ def main():
         row, col = user_board.user_guesses () #Take the result of the methode
         user_board.guesses.append ((row, col))
         result = computer_board.hit_or_missed (row, col) #Check if the user hit or missed
+        if result == "hit":
+            user_score += 1
         print("\n")
         print ("My new board is :")
         print (computer_board.readme())
@@ -131,6 +133,8 @@ def main():
         computer_board.guesses.append ((row, col))
         print (f"My guess is row : {row} and col : {col}")
         result = user_board.hit_or_missed (row, col) #Check if the user hit or missed
+        if result == "hit":
+            computer_score += 1
         print("\n")
         print (f"{name}, your new board is :")
         print (user_board.readme())
@@ -138,10 +142,6 @@ def main():
         print ("*" * 30, "\n")
 
         #New score printing
-        if user_board.hit_or_missed() == "hit":
-            computer_score += 1
-        if computer_board.hit_or_missed() == "hit":
-            user_score += 1
         print (f"{name}, your new score is {user_score} and mine is {computer_score}")
         print("\n")
         print ("*" * 30, "\n")
