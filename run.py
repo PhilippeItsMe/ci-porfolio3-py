@@ -32,8 +32,8 @@ class Board:
             # To avoid having twice the a ship at the same place
             if (row, col) not in self.ships_position:
                 self.ships_position.append((row, col))
-                if self.owner_type == "user":
-                    self.board[row][col] = "S"
+                #if self.owner_type == "user":
+                self.board[row][col] = "S"
 
     def readme(self):
         """ Make the board a string so it's printable """
@@ -88,7 +88,6 @@ class Board:
         """" To see if some ships are remaining """
         return len(self.ships_position) > 0
 
-
 def main():
     """
     Launch the game and run all functions
@@ -108,8 +107,8 @@ def main():
     print("*" * 30)
 
     # Initiat the boards
-    user_board = Board(3, 2, name, "user")
-    computer_board = Board(3, 2, "BigBlue", "computer")
+    user_board = Board(2, 1, name, "user")
+    computer_board = Board(2, 1, "BigBlue", "computer")
     user_board.ships_place()
     computer_board.ships_place()
 
@@ -137,17 +136,12 @@ def main():
         print("\n")
         print("*" * 30, "\n")
 
-        # Check if the user won
-        if not computer_board.game_not_over():
-            print("Well done, you won ! The game is over.")
-            print("\n")
-            break
-
         # Computer playing
         # Take the result of the method
         row, col = user_board.computer_guesses()
         computer_board.guesses.append((row, col))
         print(f"My guess is row : {row} and col : {col}")
+
         # Check if the user hit or missed
         result = user_board.hit_or_missed(row, col)
         if result == "hit":
@@ -163,16 +157,21 @@ def main():
         print("\n")
         print("*" * 30, "\n")
 
-        # Check if the computer won
-        if not user_board.game_not_over():
-            print("Hey hey hey... I got you ! I won. The game is over.")
-            print("\n")
+        # Check if a player won
+        if user_board.game_not_over() and not computer_board.game_not_over():
+            print("Well done, you won! The game is over.\n")
+            break
+        elif not user_board.game_not_over() and computer_board.game_not_over():
+            print("Hey hey hey... I got you! I won. The game is over.\n")
+            break
+        elif not user_board.game_not_over() and not computer_board.game_not_over():
+            print("It's a tie! Both of us have no ships left. The game is over.\n")
             break
 
         # Check if the user still want to play
         a = input("Are you ready for the next round ? If yes, press 'y' : ")
         print("\n")
-        if a == "y":
+        if a.lower() == "y":
             continue
         else:
             break

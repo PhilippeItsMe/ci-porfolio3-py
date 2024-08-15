@@ -61,7 +61,6 @@ For you information, the board are 3 on 3 with 2 ships to facilitate the testing
     <li>Choice of number and size of the ships on the board</li>
     <li>Entering the position of the computer ship with number form 1 to ... instead fo the 0 to...</li>
     <li>Possiblity to play online against other humain player</li>
-    <li>Management the ex aequo case</li>
 </ul>
 
 <h2>Data model</h2>
@@ -78,6 +77,7 @@ Two board (instances) are build out of the board class to allow the game to happ
     <li>I tested the game (and the error scenarios) on VSC and Heroku, no problem found</li>
     <li>I tested the game on PEP8, no critical problem found, but spaces issues (around 100) all solved</li>
     <li>My 8 years of boy tested, his comment "Cool Dady"</li>
+    <li>In order to test, the results printing, the board size has been reduced to 2 and the number of ship to 1"</li>
 </ul>
 
 <h2>Testing</h2>
@@ -91,6 +91,8 @@ Two board (instances) are build out of the board class to allow the game to happ
     <li>I first didn't define my score var in the main as global creating a scope issue.</li>
     <li>PEP8 raised some needed and unneeded space issues, all solved</li>
     <li>While asking the player name, the input was not correctly check, I corrected the issue following my mentor input</li>
+    <li>I had to add a message in case of ex aequo</li>
+    <li>I had to increase usabilty to adding the possibility to answer "Y" and not only "y" to the quesition do i want to continue playing</li>
 </ul>
 
 <h3>Existing bug : None</h3>
