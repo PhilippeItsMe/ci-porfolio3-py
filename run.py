@@ -88,6 +88,7 @@ class Board:
         """" To see if some ships are remaining """
         return len(self.ships_position) > 0
 
+
 def main():
     """
     Launch the game and run all functions
@@ -98,9 +99,9 @@ def main():
     print("\n")
     print("*" * 30, "\n")
     print("Welcome to my great Battleship game !\n")
-    name = input("What's your name ?\n").replace(" ","")
+    name = input("What's your name ?\n").replace(" ", "")
     while name == "":
-        name = input("Please enter your name correctly (no empty input):\n").replace(" ","")
+        name = input("Please enter your name correctly:\n").replace(" ", "")
         print("\n")
 
     print(f"\nSo {name}, let's see if you got what it takes to beat me!\n")
@@ -179,14 +180,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-

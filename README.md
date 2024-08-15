@@ -9,7 +9,7 @@
 
 <h2>Background</h2>
 This battelship game is a build on python. 
-The goal of this game is to hit all the computer ships before he hits yours.
+The goal of this game is to hit all the computer ships before he hit yours.
 The first one hitting all the ship of the other is the winner.
 
 <h2>How to play</h2>
@@ -19,15 +19,18 @@ The first one hitting all the ship of the other is the winner.
     <li>Let the software create two boards with ships on it</li>
     <img style="width:300px" src="assets/images/boards.webp"><br>
     <li>Guess where the computer ships are by entering a position : row and col.</li>
+    <img style="width:300px" src="assets/images/guess.webp"><br>
     <li>Let the computer do the same for your ships</li>
     <li>Let the software check if you and the computer hit or miss the enemy ships</li>
     <li>Let the software print you new boards and the new results with your scores</li>
-    <img style="width:300px" src="assets/images/scores.webp"><br>
+    <img style="width:300px" src="assets/images/scores1.webp"><br>
+    <img style="width:300px" src="assets/images/scores2.webp"><br>
     <li>Enter if you still want to continue the game</li>
+    <img style="width:300px" src="assets/images/continue.webp"><br>
     <li>Repeat the guessing step until the game is over</li>
 </ol>
 
-For you information, the board are 3 on 3 with 2 ships to facilitate the testing of the game. The user ship position are marked with a S. Hits on the boards are notify by a X and miss by a O.
+For you information, the board are 5 on 5 with 4 ships. The user ship position are marked with a S. Hits on the boards are notify by a X and miss by a O.
 
 <h2>Feature</h2>
 
@@ -37,7 +40,6 @@ For you information, the board are 3 on 3 with 2 ships to facilitate the testing
         <ul>
             <li>Creation of the board of the user and of the computer</li>
             <li>Calculation of the users and computers ships position</li>
-            <li>Display of the users ships positio on his board</li>
             <li>No display of the computer ships position on his board</li>
         </ul>
     <li>Capture of the user computer ships position guesses</li>
@@ -86,13 +88,13 @@ Two board (instances) are build out of the board class to allow the game to happ
 
 <ul>
     <li>I regularly forgot to put ":" after defining my function.</li>
-    <li>I tried first to update the target position from the user and the computer inside the class, but I was putting the user and the computer guess in the same list and creating confusion between you targeted what position</li>
+    <li>I tried first to update the target position from the user and the computer inside the class, but I was putting the user and the computer guess in the same list and creating confusion between who targeted what position</li>
     <li>I did put "," between the argument of my functions creating bugs </li>
     <li>I first didn't define my score var in the main as global creating a scope issue.</li>
     <li>PEP8 raised some needed and unneeded space issues, all solved</li>
     <li>While asking the player name, the input was not correctly check, I corrected the issue following my mentor input</li>
     <li>I had to add a message in case of ex aequo</li>
-    <li>I had to increase usabilty to adding the possibility to answer "Y" and not only "y" to the quesition do i want to continue playing</li>
+    <li>I had to increase usabilty by adding the possibility to answer "Y" and not only "y" to the question do i want to continue playing</li>
 </ul>
 
 <h3>Existing bug : None</h3>
@@ -110,6 +112,6 @@ Two board (instances) are build out of the board class to allow the game to happ
 <h2>Credits</h2>
 <ol>
     <li>Thanks to Code Institute for the project idea and the coding direction presented</li>
-    <li>Thanks to Code Institute for the readme model</li>
+    <li>Thanks to Code Institute for the readme model. I try to stay as closed as possible of this model to be inline with your expectation.</li>
     <li>Thanks to Spence, my mentor, for his support.</li>
 </ol>
