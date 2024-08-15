@@ -32,8 +32,8 @@ class Board:
             # To avoid having twice the a ship at the same place
             if (row, col) not in self.ships_position:
                 self.ships_position.append((row, col))
-                #if self.owner_type == "user":
-                self.board[row][col] = "S"
+                if self.owner_type == "user":
+                    self.board[row][col] = "S"
 
     def readme(self):
         """ Make the board a string so it's printable """
@@ -107,8 +107,8 @@ def main():
     print("*" * 30)
 
     # Initiat the boards
-    user_board = Board(2, 1, name, "user")
-    computer_board = Board(2, 1, "BigBlue", "computer")
+    user_board = Board(5, 4, name, "user")
+    computer_board = Board(5, 4, "BigBlue", "computer")
     user_board.ships_place()
     computer_board.ships_place()
 
