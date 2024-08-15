@@ -76,7 +76,7 @@ Two board (instances) are build out of the board class to allow the game to happ
 
 <ul>
     <li>I tested the game (and the error scenarios) on VSC and Heroku, no problem found</li>
-    <li>I tested the game on PEP8, no critical problem found</li>
+    <li>I tested the game on PEP8, no critical problem found, but spaces issues (around 100) all solved</li>
     <li>My 8 years of boy tested, his comment "Cool Dady"</li>
 </ul>
 
@@ -89,6 +89,8 @@ Two board (instances) are build out of the board class to allow the game to happ
     <li>I tried first to update the target position from the user and the computer inside the class, but I was putting the user and the computer guess in the same list and creating confusion between you targeted what position</li>
     <li>I did put "," between the argument of my functions creating bugs </li>
     <li>I first didn't define my score var in the main as global creating a scope issue.</li>
+    <li>PEP8 raised some needed and unneeded space issues, all solved</li>
+    <li>While asking the player name, the input was not correctly check, I corrected the issue following my mentor input</li>
 </ul>
 
 <h3>Existing bug : None</h3>

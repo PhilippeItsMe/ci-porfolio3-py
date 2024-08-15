@@ -99,9 +99,12 @@ def main():
     print("\n")
     print("*" * 30, "\n")
     print("Welcome to my great Battleship game !\n")
-    name = input("What's your name ?\n")
-    print("")
-    print(f"So {name}, let's see if you got what it takes to beat me !\n")
+    name = input("What's your name ?\n").replace(" ","")
+    while name == "":
+        name = input("Please enter your name correctly (no empty input):\n").replace(" ","")
+        print("\n")
+
+    print(f"\nSo {name}, let's see if you got what it takes to beat me!\n")
     print("*" * 30)
 
     # Initiat the boards
