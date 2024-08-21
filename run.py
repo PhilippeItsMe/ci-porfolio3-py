@@ -108,8 +108,8 @@ def main():
     print("*" * 30)
 
     # Initiat the boards
-    user_board = Board(5, 4, name, "user")
-    computer_board = Board(5, 4, "BigBlue", "computer")
+    user_board = Board(2, 1, name, "user")
+    computer_board = Board(2, 1, "BigBlue", "computer")
     user_board.ships_place()
     computer_board.ships_place()
 
@@ -121,7 +121,7 @@ def main():
     print("\n")
     print("*" * 30, "\n")
 
-    # Game's on until all ships form one player are sunked
+    # Game's on until all ships form one player are sunk
     while user_board.not_over() and computer_board.not_over():
         # User playing
         # Take the result of the methode
@@ -139,7 +139,7 @@ def main():
 
         # Computer playing
         # Take the result of the method
-        row, col = user_board.computer_guesses()
+        row, col = computer_board.computer_guesses()
         computer_board.guesses.append((row, col))
         print(f"My guess is row : {row} and col : {col}")
 
