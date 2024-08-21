@@ -163,12 +163,12 @@ def main():
             print("Well done, you won! The game is over.\n")
             break
         elif not user_board.not_over() and computer_board.not_over():
-                print("Hey hey hey... I got you! I won. The game is over.\n")
-                break
+            print("Hey hey hey... I got you! I won. The game is over.\n")
+            break
         elif not user_board.not_over() and not computer_board.not_over():
-                print("It's a tie! Both of us have no ships left.")
-                print("The game is over.\n")
-                break
+            print("It's a tie! Both of us have no ships left.")
+            print("The game is over.\n")
+            break
 
         # Check if the user still want to play
         a = input("Are you ready for the next round ? If yes, press 'y' : ")
