@@ -95,6 +95,7 @@ Two board (instances) are build out of the board class to allow the game to happ
     <li>While asking the player name, the input was not correctly check, I corrected the issue following my mentor input</li>
     <li>I had to add a message in case of ex aequo</li>
     <li>I had to increase usabilty by adding the possibility to answer "Y" and not only "y" to the question do i want to continue playing</li>
+    <li>Computer guesses were recorded in the user guess var, I had to correct that</li>
 </ul>
 
 <h3>Existing bug : None</h3>
