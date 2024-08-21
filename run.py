@@ -84,7 +84,7 @@ class Board:
             self.board[row][col] = "O"
             print("That's a miss.")
 
-    def game_not_over(self):
+    def not_over(self):
         """" To see if some ships are remaining """
         return len(self.ships_position) > 0
 
@@ -122,7 +122,7 @@ def main():
     print("*" * 30, "\n")
 
     # Game's on until all ships form one player are sunked
-    while user_board.game_not_over() and computer_board.game_not_over():
+    while user_board.not_over() and computer_board.not_over():
         # User playing
         # Take the result of the methode
         row, col = user_board.user_guesses()
@@ -159,15 +159,16 @@ def main():
         print("*" * 30, "\n")
 
         # Check if a player won
-        if user_board.game_not_over() and not computer_board.game_not_over():
+        if user_board.not_over() and not computer_board.not_over():
             print("Well done, you won! The game is over.\n")
             break
-        elif not user_board.game_not_over() and computer_board.game_not_over():
-            print("Hey hey hey... I got you! I won. The game is over.\n")
-            break
-        elif not user_board.game_not_over() and not computer_board.game_not_over():
-            print("It's a tie! Both of us have no ships left. The game is over.\n")
-            break
+        elif not user_board.not_over() and computer_board.not_over():
+                print("Hey hey hey... I got you! I won. The game is over.\n")
+                break
+        elif not user_board.not_over() and not computer_board.not_over():
+                print("It's a tie! Both of us have no ships left.")
+                print("The game is over.\n")
+                break
 
         # Check if the user still want to play
         a = input("Are you ready for the next round ? If yes, press 'y' : ")
