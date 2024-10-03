@@ -3,19 +3,18 @@ from random import randint
 user_score = 0
 computer_score = 0
 
+
 class Board:
     """
     A class to represent the game board used by the user and the computer.
-    
     Attributes:
         size (int): The size of the board (NxN).
         num_ships (int): Number of ships to be placed on the board.
         user_name (str): The name of the player (user or computer).
-        owner_type (str): Indicates if the board belongs to the user or computer.
-        ships_position (list): The list of coordinates where ships are placed.
+        owner_type (str): Indicates to who the board belongs.
+        ships_position (list): The list of ships coordinates.
         guesses (list): The list of coordinates guessed so far.
     """
-    
     def __init__(self, size, num_ships, user_name, owner_type):
         """ Initializes the board. """
         self.size = size
@@ -52,7 +51,7 @@ class Board:
                     else:
                         print("You already guessed that spot. Try again.")
                 else:
-                    print(f"Invalid input. Enter numbers between 0 and {self.size - 1}.")
+                    print(f"Invalid. Numbers form 0 to {self.size - 1}.")
             except ValueError:
                 print("Invalid input. Please enter a number.")
 
@@ -88,19 +87,19 @@ def setup_game():
     name = input("Please, enter your name: ").strip()
     while not name:
         name = input("Please enter a valid name: ").strip()
-    
+
     user_board = Board(5, 4, name, "user")
     computer_board = Board(5, 4, "Computer", "computer")
     user_board.place_ships()
     computer_board.place_ships()
-    
+
     return user_board, computer_board, name
 
 
 def play_turn(board, opponent_board, is_user=True):
     """
     Handles a player's turn (user or computer).
-    
+
     Args:
         board (Board): The current player's board.
         opponent_board (Board): The opponent's board.
@@ -128,15 +127,14 @@ def print_scores(user_score, computer_score, name):
 def main():
     """ Main game loop. """
     global user_score, computer_score
-    
+
     # Game setup
     user_board, computer_board, name = setup_game()
-    
     print(f"\n{name}, this is your board:")
     print(user_board.render_board())
     print("\nThis is my board (computer - ships hidden):")
     print(computer_board.render_board())
-    
+
     # Game loop
     while user_board.has_ships_left() and computer_board.has_ships_left():
         # User turn
@@ -154,19 +152,20 @@ def main():
         print(user_board.render_board())
 
         # Check if game over
-        if not computer_board.has_ships_left() and not user_board.has_ships_left(): #Ex-aequo
+        if not computer_board.has_ships_left() and not user_board.has_ships_left():
             print("It's a tie! Both players lost all their ships.")
             break
-        elif not computer_board.has_ships_left(): #User won
+        elif not computer_board.has_ships_left():
             print("Congratulations! You won!")
             break
 
-        elif not user_board.has_ships_left(): #Computer won
+        elif not user_board.has_ships_left():
             print("Sorry, you lost. The computer won!")
             break
 
         # Print current scores
         print_scores(user_score, computer_score, name)
+
 
 if __name__ == "__main__":
     main()
