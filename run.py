@@ -3,90 +3,123 @@ from random import randint
 user_score = 0
 computer_score = 0
 
-
 class Board:
     """
-    Creation of a standard board that will be used
-    by the user and the computer.
-    The size, the number of ships, their position,
-    and the owner of the board will be defined here.
-    The ship positions and the guesses will be stocked here too.
+    A class to represent the game board used by the user and the computer.
+    
+    Attributes:
+        size (int): The size of the board (NxN).
+        num_ships (int): Number of ships to be placed on the board.
+        user_name (str): The name of the player (user or computer).
+        owner_type (str): Indicates if the board belongs to the user or computer.
+        ships_position (list): The list of coordinates where ships are placed.
+        guesses (list): The list of coordinates guessed so far.
     """
+    
     def __init__(self, size, num_ships, user_name, owner_type):
-        """ Setup of the board blueprint """
+        """ Initializes the board and places ships randomly. """
         self.size = size
-        self.board = [["."]*size for _ in range(size)]
+        self.board = [["."] * size for _ in range(size)]
         self.num_ships = num_ships
         self.user_name = user_name
         self.owner_type = owner_type
-        # List the effectiv position of the ship
         self.ships_position = []
-        # List the guessed position of the ships
         self.guesses = []
 
-    def ships_place(self):
-        """ Setup of the ships place """
+    def place_ships(self):
+        """ Randomly places ships on the board. """
         while len(self.ships_position) < self.num_ships:
             row = randint(0, self.size - 1)
             col = randint(0, self.size - 1)
-            # To avoid having twice the a ship at the same place
             if (row, col) not in self.ships_position:
                 self.ships_position.append((row, col))
                 if self.owner_type == "user":
                     self.board[row][col] = "S"
 
-    def readme(self):
-        """ Make the board a string so it's printable """
-        # To put all the stings together
+    def render_board(self):
+        """ Returns the board as a printable string. """
         return "\n".join([" ".join(row) for row in self.board])
 
-    def user_guesses(self):
-        """ Get the user guess and check his validity"""
+    def get_user_guess(self):
+        """ Prompts the user for a valid row and column guess. """
         while True:
             try:
-                print("What's your guess ?\n")
-                print(f"Enter a number between 0 and {self.size -1}.\n")
-                row = int(input("Your row : "))
-                col = int(input("Your col : "))
+                row = int(input(f"Enter row (0-{self.size - 1}): "))
+                col = int(input(f"Enter column (0-{self.size - 1}): "))
                 if 0 <= row < self.size and 0 <= col < self.size:
                     if (row, col) not in self.guesses:
                         return row, col
                     else:
-                        print("\n")
-                        print("Oups, you already targeted that. Try again.")
-                        print("\n")
+                        print("You already guessed that spot. Try again.")
                 else:
-                    print("\n")
-                    print(f"Enter a number between 0 and {self.size - 1}.")
-                    print("\n")
+                    print(f"Invalid input. Enter numbers between 0 and {self.size - 1}.")
             except ValueError:
-                print("\n")
-                print("You input is invalid! Try again.")
-                print("\n")
+                print("Invalid input. Please enter a number.")
 
-    def computer_guesses(self):
-        """ Make the computer guess"""
+    def get_computer_guess(self):
+        """ Generates a valid random guess for the computer. """
         while True:
             row = randint(0, self.size - 1)
             col = randint(0, self.size - 1)
-            # To avoid having twice the same computer guess
             if (row, col) not in self.guesses:
                 return row, col
 
-    def hit_or_missed(self, row, col):
-        """Check if the targeted position is a hit or a missed"""
+    def check_hit_or_miss(self, row, col):
+        """ Checks if the guess is a hit or miss. """
         if (row, col) in self.ships_position:
             self.board[row][col] = "X"
             self.ships_position.remove((row, col))
-            print("That's a hit.")
+            print("Hit!")
             return "hit"
         else:
             self.board[row][col] = "O"
-            print("That's a miss.")
+            print("Miss.")
+            return "miss"
 
-    def not_over(self):
-        """" To see if some ships are remaining """
+    def has_ships_left(self):
+        """ Returns True if there are ships remaining on the board. """
         return len(self.ships_position) > 0
+
+
+def setup_game():
+    """ Sets up the game by initializing both user and computer boards. """
+    print("Welcome to Battleship!")
+    name = input("Enter your name: ").strip()
+    while not name:
+        name = input("Please enter a valid name: ").strip()
+    
+    user_board = Board(5, 4, name, "user")
+    computer_board = Board(5, 4, "Computer", "computer")
+    user_board.place_ships()
+    computer_board.place_ships()
+    
+    return user_board, computer_board, name
+
+
+def play_turn(board, opponent_board, is_user=True):
+    """
+    Handles a player's turn (user or computer).
+    
+    Args:
+        board (Board): The current player's board.
+        opponent_board (Board): The opponent's board.
+        is_user (bool): Whether it's the user's turn or the computer's.
+    """
+    if is_user:
+        print("\nYour turn!")
+        row, col = board.get_user_guess()
+    else:
+        print("Computer's turn...")
+        row, col = board.get_computer_guess()
+        print(f"Computer guessed: Row {row}, Col {col}")
+
+    board.guesses.append((row, col))
+    return opponent_board.check_hit_or_miss(row, col)
+
+
+def print_scores(user_score, computer_score, name):
+    """ Prints the current scores. """
+    print(f"{name}'s score: {user_score}, Computer's score: {computer_score}")
 
 
 def main():
