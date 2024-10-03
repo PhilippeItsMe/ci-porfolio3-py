@@ -123,94 +123,45 @@ def print_scores(user_score, computer_score, name):
 
 
 def main():
-    """
-    Launch the game and run all functions
-    """
+    """ Main game loop. """
     global user_score, computer_score
-
-    # Welcome message
-    print("\n")
-    print("*" * 30, "\n")
-    print("Welcome to my great Battleship game !\n")
-    name = input("What's your name ?\n").replace(" ", "")
-    while name == "":
-        name = input("Please enter your name correctly:\n").replace(" ", "")
-        print("\n")
-
-    print(f"\nSo {name}, let's see if you got what it takes to beat me!\n")
-    print("*" * 30)
-
-    # Initiat the boards
-    user_board = Board(5, 4, name, "user")
-    computer_board = Board(5, 4, "BigBlue", "computer")
-    user_board.ships_place()
-    computer_board.ships_place()
-
-    print(f"\n{name}, this is your board : ")
-    print(user_board.readme())
-    print("\n")
-    print("And this is mine : (of course my ships are hidden)")
-    print(computer_board.readme())
-    print("\n")
-    print("*" * 30, "\n")
-
-    # Game's on until all ships form one player are sunk
-    while user_board.not_over() and computer_board.not_over():
-        # User playing
-        # Take the result of the methode
-        row, col = user_board.user_guesses()
-        user_board.guesses.append((row, col))
-        # Check if the user hit or missed
-        result = computer_board.hit_or_missed(row, col)
+    
+    # Game setup
+    user_board, computer_board, name = setup_game()
+    
+    print(f"\n{name}, this is your board:")
+    print(user_board.render_board())
+    print("\nComputer's board (ships hidden):")
+    print(computer_board.render_board())
+    
+    # Game loop
+    while user_board.has_ships_left() and computer_board.has_ships_left():
+        # User turn
+        result = play_turn(user_board, computer_board, is_user=True)
         if result == "hit":
             user_score += 1
-        print("\n")
-        print("My new board is :")
-        print(computer_board.readme())
-        print("\n")
-        print("*" * 30, "\n")
+        print(f"\n{name}'s board after your move:")
+        print(computer_board.render_board())
 
-        # Computer playing
-        # Take the result of the method
-        row, col = computer_board.computer_guesses()
-        computer_board.guesses.append((row, col))
-        print(f"My guess is row : {row} and col : {col}")
+        # Check if game over
+        if not computer_board.has_ships_left():
+            print("Congratulations! You won!")
+            break
 
-        # Check if the user hit or missed
-        result = user_board.hit_or_missed(row, col)
+        # Computer turn
+        result = play_turn(computer_board, user_board, is_user=False)
         if result == "hit":
             computer_score += 1
-        print("\n")
-        print(f"{name}, your new board is :")
-        print(user_board.readme())
-        print("\n")
-        print("*" * 30, "\n")
+        print(f"\n{name}'s board after Computer's move:")
+        print(user_board.render_board())
 
-        # New score printing
-        print(f"{name}, your score is {user_score} & mine is {computer_score}")
-        print("\n")
-        print("*" * 30, "\n")
-
-        # Check if a player won
-        if user_board.not_over() and not computer_board.not_over():
-            print("Well done, you won! The game is over.\n")
-            break
-        elif not user_board.not_over() and computer_board.not_over():
-            print("Hey hey hey... I got you! I won. The game is over.\n")
-            break
-        elif not user_board.not_over() and not computer_board.not_over():
-            print("It's a tie! Both of us have no ships left.")
-            print("The game is over.\n")
+        # Check if game over
+        if not user_board.has_ships_left():
+            print("Sorry, you lost. The computer won!")
             break
 
-        # Check if the user still want to play
-        a = input("Are you ready for the next round ? If yes, press 'y' : ")
-        print("\n")
-        if a.lower() == "y":
-            continue
-        else:
-            break
-
+        # Print current scores
+        print_scores(user_score, computer_score, name)
 
 if __name__ == "__main__":
     main()
