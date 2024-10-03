@@ -88,12 +88,12 @@ def setup_game():
     while not name:
         name = input("Please enter a valid name: ").strip()
 
-    user_board = Board(5, 4, name, "user")
-    computer_board = Board(5, 4, "Computer", "computer")
-    user_board.place_ships()
-    computer_board.place_ships()
+    user_b = Board(5, 4, name, "user")
+    computer_b = Board(5, 4, "Computer", "computer")
+    user_b.place_ships()
+    computer_b.place_ships()
 
-    return user_board, computer_board, name
+    return user_b, computer_b, name
 
 
 def play_turn(board, opponent_board, is_user=True):
@@ -129,37 +129,37 @@ def main():
     global user_score, computer_score
 
     # Game setup
-    user_board, computer_board, name = setup_game()
+    user_b, computer_b, name = setup_game()
     print(f"\n{name}, this is your board:")
-    print(user_board.render_board())
+    print(user_b.render_board())
     print("\nThis is my board (computer - ships hidden):")
-    print(computer_board.render_board())
+    print(computer_b.render_board())
 
     # Game loop
-    while user_board.has_ships_left() and computer_board.has_ships_left():
+    while user_b.has_ships_left() and computer_b.has_ships_left():
         # User turn
-        result = play_turn(user_board, computer_board, is_user=True)
+        result = play_turn(user_b, computer_b, is_user=True)
         if result == "hit":
             user_score += 1
         print(f"\nMy board (computer) after your move:")
-        print(computer_board.render_board())
+        print(computer_b.render_board())
 
         # Computer turn
-        result = play_turn(computer_board, user_board, is_user=False)
+        result = play_turn(computer_b, user_b, is_user=False)
         if result == "hit":
             computer_score += 1
         print(f"\n{name}'s board after Computer's move:")
-        print(user_board.render_board())
+        print(user_b.render_board())
 
         # Check if game over
-        if not computer_board.has_ships_left() and not user_board.has_ships_left():
+        if not computer_b.has_ships_left() and not user_b.has_ships_left():
             print("It's a tie! Both players lost all their ships.")
             break
-        elif not computer_board.has_ships_left():
+        elif not computer_b.has_ships_left():
             print("Congratulations! You won!")
             break
 
-        elif not user_board.has_ships_left():
+        elif not user_b.has_ships_left():
             print("Sorry, you lost. The computer won!")
             break
 
