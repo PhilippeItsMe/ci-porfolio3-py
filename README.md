@@ -137,6 +137,26 @@ Two boards (instances) are created from the `Board` class, allowing the game to 
     <td>Winner - Message for a tie (ex-aequo)</td>
     <td>OK</td>
   </tr>
+  <tr>
+    <td>Function - Creation boards</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Function - Placing ships on the boards</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Function - Getting guesses for the user and the computer</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Function - Updating boards</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Function - Communicating scores during the game</td>
+    <td>OK</td>
+  </tr>
 </table>
 
 <h3>Solved Bugs</h3>
