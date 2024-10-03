@@ -49,7 +49,6 @@ For your information, the boards are 5x5 in size, each with 4 ships. The user's 
     <li>Cross-check to ensure computer's guesses are not repeated</li>
     <li>Tracking of hits</li>
     <li>Display of the updated boards and the results for each round</li>
-    <li>Option to stop the game after each round</li>
     <li>Display of the winner once the game is over</li>
 </ul>
 
@@ -59,6 +58,12 @@ For your information, the boards are 5x5 in size, each with 4 ships. The user's 
     <li>Option to select the number and size of ships on the board</li>
     <li>Allow input for ship positions using numbers starting from 1 instead of 0</li>
     <li>Ability to play online against other human players</li>
+</ul>
+
+<h2>Programming languages and libraries</h2>
+<ul>
+    <li>Python</li>
+    <li>Randint from Random</li>
 </ul>
 
 <h2>Data Model</h2>
@@ -89,6 +94,12 @@ Two boards (instances) are created from the `Board` class, allowing the game to 
     <li>I had to add a message in case of a tie (ex aequo).</li>
     <li>To improve usability, I added the option to answer "Y" as well as "y" to the prompt asking if the player wants to continue playing.</li>
     <li>The computer's guesses were being recorded in the user's guess variable, which I corrected.</li>
+    <li>The Board class and the main function have been refactored to improve modularity and reduce their length.</li>
+    <li>Input validation has been improved to prevent unhandled exceptions and ensure the app remains responsive.</li>
+    <li>Redundant prompts removed: The 'Are you ready for the next round?' question was eliminated to streamline gameplay as requested in the project assesment.</li>
+    <li>Descriptive docstrings were improved for function to enhance clarity.</li>
+   <li>Improvement of grammar and spelling in the texts.</li>
+
 </ul>
 
 <h3>Existing Bugs: None</h3>

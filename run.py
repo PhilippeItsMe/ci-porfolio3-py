@@ -17,7 +17,7 @@ class Board:
     """
     
     def __init__(self, size, num_ships, user_name, owner_type):
-        """ Initializes the board and places ships randomly. """
+        """ Initializes the board. """
         self.size = size
         self.board = [["."] * size for _ in range(size)]
         self.num_ships = num_ships
@@ -44,8 +44,8 @@ class Board:
         """ Prompts the user for a valid row and column guess. """
         while True:
             try:
-                row = int(input(f"Enter row (0-{self.size - 1}): "))
-                col = int(input(f"Enter column (0-{self.size - 1}): "))
+                row = int(input(f"Enter a row (0-{self.size - 1}): "))
+                col = int(input(f"Enter a column (0-{self.size - 1}): "))
                 if 0 <= row < self.size and 0 <= col < self.size:
                     if (row, col) not in self.guesses:
                         return row, col
@@ -73,7 +73,7 @@ class Board:
             return "hit"
         else:
             self.board[row][col] = "O"
-            print("Miss.")
+            print("Miss!")
             return "miss"
 
     def has_ships_left(self):
@@ -83,8 +83,9 @@ class Board:
 
 def setup_game():
     """ Sets up the game by initializing both user and computer boards. """
-    print("Welcome to Battleship!")
-    name = input("Enter your name: ").strip()
+    print(f"\n")
+    print("Welcome to my great Battleship! It's going to be bloody!")
+    name = input("Please, enter your name: ").strip()
     while not name:
         name = input("Please enter a valid name: ").strip()
     
@@ -106,10 +107,11 @@ def play_turn(board, opponent_board, is_user=True):
         is_user (bool): Whether it's the user's turn or the computer's.
     """
     if is_user:
-        print("\nYour turn!")
+        print("\nYour turn, my friend!")
         row, col = board.get_user_guess()
     else:
-        print("Computer's turn...")
+        print("\n")
+        print("My turn...(computer)")
         row, col = board.get_computer_guess()
         print(f"Computer guessed: Row {row}, Col {col}")
 
@@ -119,6 +121,7 @@ def play_turn(board, opponent_board, is_user=True):
 
 def print_scores(user_score, computer_score, name):
     """ Prints the current scores. """
+    print("\n")
     print(f"{name}'s score: {user_score}, Computer's score: {computer_score}")
 
 
@@ -131,7 +134,7 @@ def main():
     
     print(f"\n{name}, this is your board:")
     print(user_board.render_board())
-    print("\nComputer's board (ships hidden):")
+    print("\nThis is my board (computer - ships hidden):")
     print(computer_board.render_board())
     
     # Game loop
@@ -140,7 +143,7 @@ def main():
         result = play_turn(user_board, computer_board, is_user=True)
         if result == "hit":
             user_score += 1
-        print(f"\n{name}'s board after your move:")
+        print(f"\nMy board (computer) after your move:")
         print(computer_board.render_board())
 
         # Check if game over
