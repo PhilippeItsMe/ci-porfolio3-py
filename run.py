@@ -153,14 +153,20 @@ def main():
 
         # Check if game over
         if not computer_b.has_ships_left() and not user_b.has_ships_left():
+            print("\n")
             print("It's a tie! Both players lost all their ships.")
+            print("\n")
             break
         elif not computer_b.has_ships_left():
+            print("\n")
             print("Congratulations! You won!")
+            print("\n")
             break
 
         elif not user_b.has_ships_left():
+            print("\n")
             print("Sorry, you lost. The computer won!")
+            print("\n")
             break
 
         # Print current scores

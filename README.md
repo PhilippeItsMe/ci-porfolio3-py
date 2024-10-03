@@ -58,6 +58,8 @@ For your information, the boards are 5x5 in size, each with 4 ships. The user's 
     <li>Option to select the number and size of ships on the board</li>
     <li>Allow input for ship positions using numbers starting from 1 instead of 0</li>
     <li>Ability to play online against other human players</li>
+    <li>Option to leave the game without having to ask the question after each loop</li>
+    <li>Managing the error when entering a number outside the rade at a line or colomn level and not after having entered both</li>
 </ul>
 
 <h2>Programming languages and libraries</h2>
@@ -79,6 +81,7 @@ Two boards (instances) are created from the `Board` class, allowing the game to 
 <ul>
     <li>I tested the game (and various error scenarios) in Visual Studio Code and on Heroku; no issues were found.</li>
     <li>I tested the game using PEP8, finding no critical issues. However, there were around 100 spacing issues, all of which were fixed.</li>
+    <img style="width:600px" src="assets/images/pep8.webp"><br>
     <li>My 8-year-old son tested the game, and his feedback was, "Cool, Daddy!"</li>
     <li>For testing purposes, I reduced the board size to 2x2 and limited the number of ships to 1, to verify the result displays.</li>
 </ul>
