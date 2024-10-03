@@ -138,7 +138,7 @@ Two boards (instances) are created from the `Board` class, allowing the game to 
     <td>OK</td>
   </tr>
   <tr>
-    <td>Function - Creation boards</td>
+    <td>Function - Creating boards</td>
     <td>OK</td>
   </tr>
   <tr>
