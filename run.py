@@ -146,11 +146,6 @@ def main():
         print(f"\nMy board (computer) after your move:")
         print(computer_board.render_board())
 
-        # Check if game over
-        if not computer_board.has_ships_left():
-            print("Congratulations! You won!")
-            break
-
         # Computer turn
         result = play_turn(computer_board, user_board, is_user=False)
         if result == "hit":
@@ -159,7 +154,14 @@ def main():
         print(user_board.render_board())
 
         # Check if game over
-        if not user_board.has_ships_left():
+        if not computer_board.has_ships_left() and not user_board.has_ships_left(): #Ex-aequo
+            print("It's a tie! Both players lost all their ships.")
+            break
+        elif not computer_board.has_ships_left(): #User won
+            print("Congratulations! You won!")
+            break
+
+        elif not user_board.has_ships_left(): #Computer won
             print("Sorry, you lost. The computer won!")
             break
 

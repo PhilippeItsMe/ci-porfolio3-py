@@ -13,16 +13,16 @@ This Battleship game is built in Python. The objective is to sink all of the com
 <h2>How to play</h2>
 <ol>
     <li>Please enter your name.</li>
-    <img style="width:300px" src="assets/images/name.webp"><br>
+    <img style="width:600px" src="assets/images/name.webp"><br>
     <li>Have the program generate two boards, each with ships placed on them.</li>
-    <img style="width:300px" src="assets/images/boards.webp"><br>
+    <img style="width:600px" src="assets/images/boards.webp"><br>
     <li>Try to guess the location of the computer's ships by entering a position: row and column.</li>
-    <img style="width:300px" src="assets/images/guess.webp"><br>
+    <img style="width:600px" src="assets/images/userguess.webp"><br>
     <li>Let the computer attempt to guess the locations of your ships as well.</li>
+    <img style="width:600px" src="assets/images/computerguess.webp"><br>
     <li>Let the program verify if you or the computer hit or missed the enemy's ships.</li>
     <li>Have the program display the updated boards and show the current scores after each round.</li>
-    <img style="width:300px" src="assets/images/scores1.webp"><br>
-    <img style="width:300px" src="assets/images/scores2.webp"><br>
+    <img style="width:600px" src="assets/images/score.webp"><br>
     <li>Continue repeating the guessing step until all ships are sunk and the game is over.</li>
 </ol>
 
@@ -70,7 +70,7 @@ For your information, the boards are 5x5 in size, each with 4 ships. The user's 
 
 I chose to follow the structure of the Code Institute Battleship game.
 
-I built a `Board` class with all the necessary functions, and I activated them in the main function to make the game work.
+I built a `Board` class with all the main functions, and I activated them, with the functions outside the `Board` in the main function to make the game work.
 
 Two boards (instances) are created from the `Board` class, allowing the game to take place.
 
@@ -82,6 +82,59 @@ Two boards (instances) are created from the `Board` class, allowing the game to 
     <li>My 8-year-old son tested the game, and his feedback was, "Cool, Daddy!"</li>
     <li>For testing purposes, I reduced the board size to 2x2 and limited the number of ships to 1, to verify the result displays.</li>
 </ul>
+
+<h3>BDD</h2>
+
+<table border="1">
+  <tr>
+    <th>Feature</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Name - Input handling</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Name - Error handling for empty input</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Name - Trimming unnecessary spaces</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Column and row - Input handling</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Column and row - Error handling for empty input</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Column and row - Error handling for non-numeric input</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Column and row - Error handling for input out of range</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Column and row - Error handling for already guessed positions</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Winner - Message for computer's victory</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Winner - Message for user's victory</td>
+    <td>OK</td>
+  </tr>
+  <tr>
+    <td>Winner - Message for a tie (ex-aequo)</td>
+    <td>OK</td>
+  </tr>
+</table>
 
 <h3>Solved Bugs</h3>
 <ul>
